@@ -1,0 +1,37 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: instance
+    image: ubuntu:18.04
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+provisioner:
+  name: ansible
+  options:
+    D: True
+  lint:
+    name: ansible-lint
+#  log: True
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
+
+scenario:
+  test_sequence:
+    - lint
+    - cleanup
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - side_effect
+    - verify
+    - cleanup
+    - destroy

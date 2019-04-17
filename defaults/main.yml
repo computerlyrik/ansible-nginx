@@ -1,0 +1,31 @@
+---
+#########################
+# General Configuration #
+#########################
+# Directory where NginX can find cert and key files
+nginx__ssl_directory: /opt/ssl
+
+nginx__ssl_ciphers: ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:DES-CBC3-SHA:!DSS
+
+nginx__docker_network: bridge
+nginx__docker_links:
+
+######################################
+# PROXY-Tasks Relevant configuration #
+######################################
+nginx__proxy_websocket: false
+nginx__proxies:
+
+##########################################
+# REDIRECTS-Tasks relevant configuration #
+##########################################
+nginx__redirects:
+
+###########################################
+# PASSWDFILE-Tasks relevant configuration #
+############################################
+
+nginx__passwdfile_directory: "passwdfile"
+nginx__passwdfile_absolute_directory: "{{ nginx__config_directory }}/{{ nginx__passwdfile_directory }}"
+
+nginx__passwdfiles:

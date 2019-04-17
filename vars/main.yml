@@ -1,0 +1,15 @@
+---
+#########################
+# General Configuration #
+#########################
+# Persistent nginx config directory on target host
+nginx__config_directory: /opt/nginx
+nginx__proxy_max_filesize: 1024m
+nginx__max_body_size: 50M
+
+###########################################
+# PASSWDFILE-Tasks relevant configuration #
+###########################################
+
+nginx__passwdfile_directory: "passwdfile"
+nginx__passwdfile_absolute_directory: "{{ nginx__config_directory }}/{{ nginx__passwdfile_directory }}"

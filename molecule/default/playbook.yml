@@ -1,0 +1,55 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+
+  - name: install prerequisites
+    apt:
+      name:
+        - python-docker
+        # - docker.io
+
+# PASSWDFILE
+
+  - name: set up nginx passwdfile
+    import_role:
+      name: computerlyrik.nginx
+      tasks_from: passwdfile
+    vars:
+      nginx__passwdfiles:
+        - user: admin
+          password: admin
+          filename: myPasswdFile
+
+# PROXY
+
+  - name: set up nginx proxy
+    import_role:
+      name: computerlyrik.nginx
+      tasks_from: proxy
+    vars:
+      nginx__proxies:
+        - name: myProxy
+          url: "{{ inventory_hostname }}"
+          backend_url: docker_container_name:8080
+          authfile: myPasswdFile
+#          ssl:
+#            cert: "myCert.cert"
+#            key: "myKey.key"
+#      nginx__ssl_directory: "/some/nginx-global/ssl/dir"
+
+# REDIRECT
+
+  - name: set up nginx redirect
+    import_role:
+      name: computerlyrik.nginx
+      tasks_from: redirect
+    vars:
+      nginx__redirects:
+        - name: simple target configuration
+          target: https://my-target.com
+          hosts:
+            - name: somesourcedwithdefaults.com
+            - name: someSourceWithSslAndTruncate.com
+              truncate: no
+              ssl: yes

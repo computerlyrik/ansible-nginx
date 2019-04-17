@@ -1,0 +1,19 @@
+---
+- name: nginx docker server
+  docker_container:
+    name: nginx
+    image: nginx:mainline
+    state: started
+    pull: yes
+    restart: "{{ restart }}"
+    restart_policy: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - "{{ nginx__config_directory }}/conf.d:/etc/nginx/conf.d:ro"
+      - "{{ nginx__passwdfile_absolute_directory }}:/etc/nginx/passwdfile:ro"
+      - "{{ nginx__ssl_directory }}:/etc/nginx/ssl:ro"
+    networks:
+      - name: "{{ nginx__docker_network }}"
+    links: "{{ nginx__docker_links }}"

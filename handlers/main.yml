@@ -1,0 +1,5 @@
+---
+- name: nginx docker server
+  include_tasks: nginx_docker.yml
+  vars:
+    restart: yes

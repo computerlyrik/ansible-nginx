@@ -1,0 +1,14 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+before_install:
+  - sudo apt-get -qq update
+install:
+  - pip install 'molecule[docker]' "testinfra==3.0.4"
+script:
+  - cd ../..
+  - mv $TRAVIS_BUILD_DIR computerlyrik.nginx
+  - cd computerlyrik.nginx
+  - molecule test

@@ -1,0 +1,19 @@
+---
+- name: prepare
+  include_tasks: prepare.yml
+
+- debug:
+    var: nginx__redirects
+    verbosity: 2
+
+- name: Configuration nginx | redirect configuration
+  template:
+    src: redirect.conf
+    dest: "{{ nginx__config_directory }}/conf.d/redirect_{{ item.name }}.conf"
+  notify: nginx docker server
+  with_items: "{{ nginx__redirects }}"
+
+- name: startup
+  include_tasks: nginx_docker.yml
+  vars:
+    restart: no

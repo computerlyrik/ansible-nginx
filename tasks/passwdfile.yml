@@ -1,0 +1,32 @@
+---
+
+- debug:
+    var: nginx__passwdfiles
+    verbosity: 2
+
+- name: Library dependency | python-passlib | ansible to htpasswd
+  apt:
+    name: python-passlib
+
+- name: Test requirements
+  fail: msg="Need to set a nginx_passwdfile_password e.g. from ansible vault"
+  when: nginx__passwdfiles is undefined
+
+- name: passwdfile directory
+  file:
+    path: "{{ nginx__passwdfile_absolute_directory }}"
+    state: directory
+    group: 101
+    mode: 0750
+  notify: nginx docker server
+
+- name: Security htpasswd
+  htpasswd:
+    path: "{{ nginx__passwdfile_absolute_directory }}/{{ item.filename }}"
+    name: "{{ item.user }}"
+    password: "{{ item.password }}"
+    owner: root
+    group: 101
+    mode: 0640
+  with_items: "{{ nginx__passwdfiles }}"
+  notify: nginx docker server

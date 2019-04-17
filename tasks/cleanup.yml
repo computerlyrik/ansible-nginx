@@ -1,0 +1,15 @@
+---
+- name: stop the containers
+  docker_container:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - nginx
+
+- name: remove config directories
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ nginx__passwdfile_absolute_directory }}"
+    - "{{ nginx__config_directory }}"

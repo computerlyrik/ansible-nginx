@@ -1,0 +1,20 @@
+---
+
+- name: prepare
+  include_tasks: prepare.yml
+
+- debug:
+    var: nginx__proxies
+    verbosity: 2
+
+- name: Configuration nginx | proxy configuration
+  template:
+    src: proxy.conf
+    dest: "{{ nginx__config_directory }}/conf.d/proxy_{{ item.name }}.conf"
+  notify: nginx docker server
+  with_items: "{{ nginx__proxies }}"
+
+- name: startup
+  include_tasks: nginx_docker.yml
+  vars:
+    restart: no

@@ -1,0 +1,6 @@
+---
+- name: configuration directory
+  file:
+    path: "{{ nginx__config_directory }}/conf.d"
+    state: directory
+    mode: 0750
