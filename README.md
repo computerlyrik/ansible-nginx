@@ -63,18 +63,16 @@ The following defines two redirect rules, enables SSL and prevents SSL for the f
         name: computerlyrik.nginx
         tasks_from: redirect
       vars:
-        nginx__redirect__ssl_enable: true
+        nginx__ssl_dir: /my/ssl/files
         nginx__redirects:
-
-          - name: no ssl
-            ssl_off: true
+          - name: redirect to my-target webite
             target: https://my-target.com
             hosts:
               - name: somesourceurlwithnossl.com
                 ssl: no # default
               - name: somesourcewithssl.com
                 truncate: yes # default
-                ssl: yes # expects an certificate and key for sourcewithssl.com in configurable nginx__redirect__ssl_dir
+                ssl: yes # expects an certificate and key, see above
 ```
 
 License
