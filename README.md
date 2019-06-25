@@ -19,6 +19,12 @@ Runs on Debianoids which are capable of running docker machines
 Role Variables
 --------------
 
+### default_server
+
+This role provides a defined *default_server* for nginx with a defined default setting, see `nginx__default_server`. Set `nginx__default_server_ssl` accordingly and make sure the files `default_server.crt` and `default_server.key` exist.
+
+**Important! Make sure, the SSL certificate matches 'the one' desired domain!**
+
 
 Example Playbook
 ----------------
