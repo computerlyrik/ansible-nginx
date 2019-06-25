@@ -19,7 +19,10 @@ Runs on Debianoids which are capable of running docker machines
 Role Variables
 --------------
 
-### default_server
+### nginx__configs_only
+Use this flag to only output the config files to `nginx__config_directory`
+
+### nginx__default_server[_*]
 
 This role provides a defined *default_server* for nginx with a defined default setting, see `nginx__default_server`. Set `nginx__default_server_ssl` accordingly and make sure the files `default_server.crt` and `default_server.key` exist.
 

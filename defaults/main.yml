@@ -3,6 +3,7 @@
 # General Configuration #
 #########################
 nginx__version: latest
+nginx__configs_only: false
 
 ## SSL
 # Directory where NginX can find cert and key files

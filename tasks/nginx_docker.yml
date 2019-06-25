@@ -17,3 +17,4 @@
     networks:
       - name: "{{ nginx__docker_network }}"
     links: "{{ nginx__docker_links }}"
+  when: not nginx__configs_only
