@@ -2,6 +2,9 @@
 #########################
 # General Configuration #
 #########################
+nginx__version: latest
+
+## SSL
 # Directory where NginX can find cert and key files
 nginx__ssl_directory: /opt/ssl
 

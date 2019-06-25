@@ -2,7 +2,7 @@
 - name: nginx docker server
   docker_container:
     name: nginx
-    image: nginx:mainline
+    image: "nginx:{{ nginx__version }}"
     state: started
     pull: yes
     restart: "{{ restart }}"
