@@ -8,6 +8,6 @@
 - name: Configuration nginx | default_server configuration
   template:
     src: notfound.conf
-    dest: "{{ nginx__config_directory }}/conf.d/redirect_default_server.conf"
+    dest: "{{ nginx__config_directory }}/conf.d/default_server.conf"
   notify: nginx docker server
   when: nginx__default_server
