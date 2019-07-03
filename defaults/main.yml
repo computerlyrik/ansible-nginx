@@ -40,3 +40,11 @@ nginx__passwdfile_directory: "passwdfile"
 nginx__passwdfile_absolute_directory: "{{ nginx__config_directory }}/{{ nginx__passwdfile_directory }}"
 
 nginx__passwdfiles:
+
+#################
+# SATIC
+###############
+
+nginx__static__ssl: false
+nginx__static__directory:
+nginx__static__url:

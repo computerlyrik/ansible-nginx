@@ -14,6 +14,7 @@
       - "{{ nginx__config_directory }}/conf.d:/etc/nginx/conf.d:ro"
       - "{{ nginx__passwdfile_absolute_directory }}:/etc/nginx/passwdfile:ro"
       - "{{ nginx__ssl_directory }}:/etc/nginx/ssl:ro"
+      - "{{ nginx__static__directory }}:/usr/share/nginx/html:ro"
     networks:
       - name: "{{ nginx__docker_network }}"
     links: "{{ nginx__docker_links }}"

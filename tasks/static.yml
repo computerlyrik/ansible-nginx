@@ -1,0 +1,15 @@
+---
+
+- name: prepare
+  include_tasks: prepare.yml
+
+- name: Configuration nginx | static configuration
+  template:
+    src: static.conf
+    dest: "{{ nginx__config_directory }}/conf.d/static.conf"
+  notify: nginx docker server
+
+- name: startup
+  include_tasks: nginx_docker.yml
+  vars:
+    restart: no
