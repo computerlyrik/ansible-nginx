@@ -46,5 +46,5 @@ nginx__passwdfiles:
 ###############
 
 nginx__static__ssl: false
-nginx__static__directory:
+nginx__static__directory: /var/www
 nginx__static__url:
